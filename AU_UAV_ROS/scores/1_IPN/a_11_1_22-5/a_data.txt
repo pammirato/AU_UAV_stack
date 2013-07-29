@@ -1,0 +1,5 @@
+Average Conflicts: 0.000000
+Average Collisions: 0.000000
+Average Distance Traveled: 12118.271582
+Average Minimum Distance needed: 9483.392725
+Average effiency: 0.782570

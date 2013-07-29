@@ -1,0 +1,30 @@
+getting APF to run
+
+
+
+
+put AU_UAV_Team1 folder in AU_UAV_stack
+
+add StartCollisionAvoidance.h, also in srv_gen/cpp/...   just copy and paste from AU_UAV_ROS
+add the code to start collision avoidance (start method, loop in main)
+	
+	-do the same for coordinator and simulator
+
+make new launch in AU_UAV_ROS, guiDrivenAPF.launch, that looks for col. av., coord, and sim in package AU_UAV_Team1
+
+
+add WAYPOINT_THRESHOLD 30  to standarddefs.h
+
+
+replace COLLISION_THRESHOLD with WAYPOINT_THRESHOLD in col. av. and coord.
+
+
+
+
+add    /* Constants for converting latitude/longitude to meters */
+	#define DELTA_LAT_TO_METERS 111200
+	#define DELTA_LON_TO_METERS 93670
+  to standardFuncs.h
+
+
+

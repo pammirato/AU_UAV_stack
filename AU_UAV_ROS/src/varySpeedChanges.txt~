@@ -1,0 +1,69 @@
+
+Changes to allow varying speed/telemetry update frequency/max turning angle per second.
+
+
+
+
+In SimulatedPlane.h
+	rename MAXIMUM_TURNING_ANGLE to MAX_ANGLE_OF_BANK
+
+
+In standardDefs.h:
+	#define TELEMETRY_FREQUENCY 2
+	#define GRAVITY_ACCEL 9.81
+
+
+In SimulatedPlane.cpp:
+	#define VELOCITY (MPS_SPEED/TELEMETRY_FREQUENCY)
+	#define MAX_TURN_ANGLE MAX_ANGLE_OF_BANK/TELEMETRY_FREQUENCY
+	#define ANGLE_CONSTANT pow(sin((VELOCITY/EARTH_RADIUS)/2.0), 2)
+
+	inside fillTelemetryUpdate method:
+		replace MAXIMUM_TURNING_ANGLE with MAX_TURN_ANGLE  (~4 spots)
+		replace MPS_SPEED with VELOCITY
+		change the "double temp =..." declaration to "double temp = ANGLE_CONSTANT;"
+		
+
+In simulator.cpp
+	change "int loopRate=1;" to"int loopRate = TELEMETRY_FREQUENCY;"
+
+
+In ripna.cpp
+	redefine "MINIMUM_TURNING_RADIUS" to "(MPS_SPEED*MPS_SPEED)/(GRAVITY_ACCEL*tan(MAX_ANGLE_OF_BANK))"
+
+  	OPTIONAL: comment out "#define PLANE_MAX_TURN_ANGLE 22.5" since it is not used and may cause confusion
+
+
+
+/*  FOR APF  */
+
+In SimulatedPlane.h
+	#define MAX_TURN_ANGLE MAX_ANGLE_OF_BANK/TELEMETRY_FREQUENCY
+
+
+In force.h
+	redefine "LOOP_RADIUS" to "(MPS_SPEED*MPS_SPEED)/(GRAVITY_ACCEL*tan(MAX_ANGLE_OF_BANK))"
+	replace MAXIMUM_TURNING_ANGLE with MAX_TURN_ANGLE  (6 spots)
+
+
+In pObject.h
+	replace MAXIMUM_TURNING_ANGLE with MAX_TURN_ANGLE
+
+
+/*  FOR APF  */
+
+
+
+
+*****WHAT TO DO NOW
+
+	To change the **air speed** of the planes, modify MPS_SPEED in standardDefs.h
+	
+	To change the **frequency of telemetry updates**, modify TELEMETRY_FREQUENCY in standardDefs.h
+		-this is how many times per second each plane sends an update
+
+	To change **how quickly the planes can turn**, modify MAX_ANGLE_OF_BANK in SimulatedPlane.h
+
+	
+
+

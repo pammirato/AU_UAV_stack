@@ -1,0 +1,326 @@
+/*
+  using the method described in Animesh Chakravarthy and Debasish Ghose's 1998 paper on colliison cones.
+  Using part B) between a point and a circle. Plane1 is the point, and plane2 is the circle. We are trying
+  to make plane1's collision cone w.r.t plane2
+*/
+
+
+
+
+
+
+
+
+
+
+//helper function to get the set N21 as explained in the paper
+//return true if N22 = n: n<N22[0] or n>N22[1]
+//       false if N22 = n: N22[0] <  n  < N22[1]
+
+bool getN21(double A, double zeta, double nu, double eta, double *N21){
+
+	//double [] N21 = [3];
+
+	double eta1;
+	double eta2;
+	bool outside = false;
+
+	double test = A/nu;
+	
+
+	if(test>1){
+		N21[0] = 0;
+		N21[1] = 0;
+	}
+	else if(test >= 0){//it must be <=1
+		//38
+		eta1 = asin(test) - zeta;
+		eta2 = M_PI - asin(test) - zeta;
+
+		N21[0] =  RADIANS_TO_DEGREES*eta1;
+		N21[1] =  RADIANS_TO_DEGREES*eta2;
+	}
+	else if(test > -1){ //must be <0
+		//39
+		eta1 = asin(test) - zeta;
+		eta2 = -M_PI - asin(test) - zeta;
+
+		N21[0] =  RADIANS_TO_DEGREES*eta1;
+		N21[1] =  RADIANS_TO_DEGREES*eta2;
+		outside = true;
+	}
+	else{//must be <= -1
+		N21[0] = 0;
+		N21[1] = 360;		
+	}
+	
+
+
+	return outside;
+
+}//getN21
+
+
+
+
+//helper function to get the set N22 as explained in the paper
+//return true if N22 = n: n<N22[0] or n>N22[1]
+//       false if N22 = n: N22[0] <  n  < N22[1]
+ 
+bool getN22(double A1, double zeta1, double nu, double eta,double *N22){
+
+	//double [] N22 = [3];
+
+	double eta1;
+	double eta2;
+	bool outside = false; //
+
+	double test = A1/nu;
+	
+
+	if(test>1){ //null
+		N22[0] = 0;
+		N22[1] = 0;
+	}
+	else if(test >= 0){//it must be <=1
+		//38
+		eta1 = asin(test) - zeta1;
+		eta2 = M_PI - asin(test) - zeta1;
+
+		N22[0] =  RADIANS_TO_DEGREES*eta1;
+		N22[1] =  RADIANS_TO_DEGREES*eta2;
+	}
+	else if(test > -1){ //must be <0
+		//39
+		eta1 = asin(test) - zeta1;
+		eta2 = -M_PI - asin(test) - zeta1;
+
+		N22[0] =  RADIANS_TO_DEGREES*eta1;
+		N22[1] =  RADIANS_TO_DEGREES*eta2;
+		outside = true;
+	}
+	else{//must be <= -1
+		N22[0] = 0;
+		N22[1] = 360;		
+	}	
+
+	return outside;
+
+
+}//getN21
+
+
+
+
+
+/*
+  using the method described in Animesh Chakravarthy and Debasish Ghose's 1998 paper on colliison cones.
+  Using part B) between a point and a circle. Plane1 is the point, and plane2 is the circle. We are trying
+  to make plane1's collision cone w.r.t plane2
+*/
+void getCone(AU_UAV_ROS::PlaneObject plane1,AU_UAV_ROS::PlaneObject plane2, double *N){
+
+
+	//an attempt was made to name all variables as they were referenced in the paper(Greek alphabet)
+
+	//all the values that we get from the planes
+	double alpha;  //bearing of plane1, positive from x-axis
+	double beta;  //bearing of plane2
+	double v1;  //velocity of plane1
+	double v2;  //velocity of plane2
+	double r0;    //length of LOS, distance between point and center of circle
+	double theta; //angle of LOS, positve from x-axis
+	double R;   //radius of circle
+
+
+	//some intermediate variables need for calculations;
+	double nu;
+	double eta;
+	double mu;
+	double rho;
+
+	double A;
+	double zeta;
+	double A1;
+	double zeta1;
+
+
+	double N1 [2];
+	double N21 [2];
+	double N22 [2];
+	double N2int [2];
+	//double N [2];
+	bool outside = false;
+
+	//fill in the variables from the planes
+
+	//alpha = bearing1;
+	//beta = bearing2;
+
+	//bearing in plane object is 0 to 180 from quadrants 1 to 2  and 0 to -180 from quadrants 3 to 4 
+	alpha = (toCartesian(plane1.getCurrentBearing()) + 360);
+	if(alpha>360){alpha -= 360;}	
+	beta = (toCartesian(plane2.getCurrentBearing()) + 360) ;
+	if(beta>360){beta -= 360;}
+
+
+	v1 = MPS_SPEED+.001;
+	v2 = MPS_SPEED;
+
+	double lat1 = plane1.getCurrentLoc().latitude;
+	double lat2 = plane2.getCurrentLoc().latitude;
+	double long1 = plane1.getCurrentLoc().longitude;
+	double long2 = plane2.getCurrentLoc().longitude;
+	double deltaLat = fabs(lat1-lat2);
+	double deltaLong = fabs(lat2);
+	double arg = deltaLat/deltaLong;
+	
+	r0 =  findDistance(lat1,long1,lat2,long2);
+	//theta = RADIANS_TO_DEGREES*atan(arg);
+	theta = findAngle(lat1,long1,lat2,long2);
+	R = COLLISION_THRESHOLD*2.0;
+
+
+	//26
+	nu = v1/v2;
+	eta = alpha - theta;
+	mu = beta - theta;
+	rho = R / sqrt((r0*r0)-(R*R));  
+
+	double x = cos(mu*DEGREES_TO_RADIANS);
+
+	//35 , 43
+	A = ( rho * cos(mu*DEGREES_TO_RADIANS) + sin(mu*DEGREES_TO_RADIANS) )/( sqrt((rho*rho)+1) );
+	A1 = ( rho * cos(mu*DEGREES_TO_RADIANS) - sin(mu*DEGREES_TO_RADIANS) )/( sqrt((rho*rho)+1) );
+	zeta = RADIANS_TO_DEGREES*asin( rho/( sqrt((rho*rho)+1) ) );  // help
+	zeta1 = RADIANS_TO_DEGREES*asin( rho/( sqrt((rho*rho)+1) ) ); // help
+	zeta1 = RADIANS_TO_DEGREES*acos( -1/( sqrt((rho*rho)+1) ) ); // help
+
+
+	//now get N1
+	//double N1[2]; //holds the lowest, highest values in the continuous set
+
+	double test1 = cos(mu/nu);
+
+	if(test1 >=1) {     //N1 is null
+		N1[0] = 0;
+		N1[1] = 0;
+	}
+	else if(test1<1 && test1 >= -1){ //N1 exists but is restricted
+
+		N1[0] = RADIANS_TO_DEGREES*-acos(cos(mu*DEGREES_TO_RADIANS)/nu);
+		N1[1] = RADIANS_TO_DEGREES*acos(cos(mu*DEGREES_TO_RADIANS)/nu);   // ****************************  should make all positive angles
+	}
+	else{ //test1 < -1
+		N1[0] = 0;
+		N1[1] = 360;
+	}
+
+
+	printf("N1: %f, %f\n", N1[0],N1[1]);
+
+	//before we do any unnecessary work. see what N21 interesect N22 is supposed to be
+
+
+	
+
+	bool do21 = false;
+	bool do22 = false;
+	
+	double test2 = A/nu;
+	double test2a = A1/nu;	
+
+
+	double eta1 = (RADIANS_TO_DEGREES*asin(test2)) - zeta;
+	//double eta2 = M_PI - asin(test2) - zeta;
+	double eta2 = 180 - RADIANS_TO_DEGREES*asin(test2) - zeta;
+
+	double eta11 = RADIANS_TO_DEGREES*asin(test2a) - zeta1;
+	double eta21 = 180 - RADIANS_TO_DEGREES*asin(test2a) - zeta1;
+
+
+
+
+	if(test2 >1 or test2a >1){
+		N2int[0] = 0;
+		N2int[0] = 0;
+	}
+	else if( test2>-1    and   test2a >-1){ //they must both be <= 1 at this point
+
+		if(nu>1){    //should not happen with constant MPS_SPEED
+			//printf("ERROR! : NOT SAME SPEED\n");
+			N2int[0] = eta1;
+			N2int[1] = eta21;
+		}
+		else if(nu<1){	//should not happen with constant MPS_SPEED
+			printf("ERROR! : NOTttttt SAME SPEED\n");
+			N2int[0] = eta1;
+			N2int[1] = eta2;
+		}
+		else{
+			N2int[0] = 0;
+			N2int[1] = 0;
+		}
+
+	}//both in range (-1,1]
+	else{ //they must both be <= 1 at this point
+		if(test2<=-1 and test2a>-1){
+			//do22 = true;	//N2int = N22
+			outside = getN22(A1,zeta1,nu,eta,N2int);
+		}
+		else if(test2>-1 and test2a <-1){
+			//do21 = true;    //N2int = N21
+			outside = getN21(A,zeta,nu,eta,N2int);
+		}
+		else{
+			N2int[0] = 0;
+			N2int[1] = 360;			
+		}
+
+	}//else
+
+
+	printf("N2int: %f, %f\n", N2int[0],N2int[1]);
+
+
+	//now find intersection of N1 and N2int (N1 int (N21 int N22))
+
+	//if N2int is a single interval
+	if(!outside){
+		//get the first (lower) number
+		if(N1[0] >= N2int[0] and N1[0] <= N2int[1] ){
+			N[0] = N1[0];
+		}
+		else if(N2int[0] >= N1[0] and N2int[0] <= N1[1]){
+			N[0] = N2int[0];
+		}
+		else{//there is no inersection
+			N[0] = N[1] = 0;
+		}
+
+		//get the second(higher) number
+		if(N1[1] <= N2int[1] and N1[1] >= N2int[0]){
+			N[1] = N1[1];
+		}
+		else if(N2int[1] <= N1[1] and N2int[1] >= N1[0] ){
+			N[1] = N2int[1];
+		}
+	}//!outside
+	else{
+		printf("ERROR: OUTSIDE\n");
+	}
+
+
+	if(N[0] == 0 and N[1]== 0){}
+	else{
+		N[0] += theta;
+		N[1] += theta;
+	}
+
+	N[0] += 360;
+	N[1] += 360;
+	if(N[0]>360){N[0] -= 360;}
+	if(N[1]>360){N[1] -= 360;}
+
+
+}//getCone

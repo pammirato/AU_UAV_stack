@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Test</name>
+    <open>1</open>
+    <Style id="lineType0">
+      <LineStyle>
+        <color>7f0000ff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType1">
+      <LineStyle>
+        <color>7f00ff00</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType2">
+      <LineStyle>
+        <color>7fff0000</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType3">
+      <LineStyle>
+        <color>7f00ffff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType4">
+      <LineStyle>
+        <color>7fff00ff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType5">
+      <LineStyle>
+        <color>7fffff00</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Folder>
+      <name>Paths</name>
+      <visibility>1</visibility>
+      <Folder>
+        <name>UAV #0</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #0</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.482089</longitude>
+            <latitude>32.604811</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.482089, 32.604811</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #0</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.482089</longitude>
+            <latitude>32.604811</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType0</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.482089, 32.604811, 200.000000
+              -85.482089, 32.604811, 200.000000
+              -85.482089, 32.604811, 200.000000
+              -85.482089, 32.604811, 200.000000
+              -85.482089, 32.604811, 200.000000
+              -85.482090, 32.604912, 200.000000
+              -85.482136, 32.605004, 200.000000
+              -85.482220, 32.605075, 200.000000
+              -85.482330, 32.605114, 200.000000
+              -85.482450, 32.605114, 200.000000
+              -85.482569, 32.605111, 200.000000
+              -85.482688, 32.605108, 200.000000
+              -85.482808, 32.605106, 200.000000
+              -85.482927, 32.605103, 200.000000
+              -85.483046, 32.605100, 200.000000
+              -85.483165, 32.605098, 200.000000
+              -85.483285, 32.605095, 200.000000
+              -85.483404, 32.605092, 200.000000
+              -85.483523, 32.605090, 200.000000
+              -85.483642, 32.605087, 200.000000
+              -85.483762, 32.605084, 200.000000
+              -85.483881, 32.605081, 200.000000
+              -85.484000, 32.605079, 200.000000
+              -85.484119, 32.605076, 200.000000
+              -85.484239, 32.605073, 200.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #0</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.484239</longitude>
+            <latitude>32.605073</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.484239, 32.605073</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #1</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #1</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486477</longitude>
+            <latitude>32.604976</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486477, 32.604976</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #1</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486477</longitude>
+            <latitude>32.604976</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType1</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.486477, 32.604976, 200.000000
+              -85.486477, 32.604976, 200.000000
+              -85.486477, 32.604976, 200.000000
+              -85.486477, 32.604976, 200.000000
+              -85.486478, 32.605077, 200.000000
+              -85.486432, 32.605169, 200.000000
+              -85.486348, 32.605240, 200.000000
+              -85.486238, 32.605279, 200.000000
+              -85.486119, 32.605279, 200.000000
+              -85.486000, 32.605267, 200.000000
+              -85.485881, 32.605256, 200.000000
+              -85.485763, 32.605245, 200.000000
+              -85.485644, 32.605233, 200.000000
+              -85.485526, 32.605222, 200.000000
+              -85.485407, 32.605210, 200.000000
+              -85.485289, 32.605199, 200.000000
+              -85.485170, 32.605188, 200.000000
+              -85.485052, 32.605176, 200.000000
+              -85.484933, 32.605165, 200.000000
+              -85.484815, 32.605153, 200.000000
+              -85.484696, 32.605142, 200.000000
+              -85.484578, 32.605131, 200.000000
+              -85.484459, 32.605119, 200.000000
+              -85.484340, 32.605108, 200.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #1</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.484340</longitude>
+            <latitude>32.605108</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.484340, 32.605108</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>

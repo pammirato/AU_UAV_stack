@@ -1,0 +1,17 @@
+#Auburn University ATTRACT Project - AU_UAV_ROS Sub-project
+#Manually generated course file - GUI Built
+
+#Starting waypoints
+#Plane ID	Latitude	Longitude	Altitude
+0		32.603528	-85.485188	200.000000
+1		32.603510	-85.484490	200.000000
+
+#Plane ID: 0
+#Waypoints (Including First): 2
+#Plane ID	Latitude	Longitude	Altitude
+0		32.604061	-85.484458	200.000000
+
+#Plane ID: 1
+#Waypoints (Including First): 2
+#Plane ID	Latitude	Longitude	Altitude
+1		32.603989	-85.485220	200.000000

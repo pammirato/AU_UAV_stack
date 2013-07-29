@@ -1,0 +1,26 @@
+Average Conflicts: 2.133333
+Average Collisions: 0.000000
+Average Distance Traveled: 13100.325488
+Average Minimum Distance needed: 9303.185433
+Average effiency: 0.710149
+Average Avoids: 126.100000
+
+
+#define CHECK_ZONE 20.0*MPS_SPEED //meters
+
+
+	if(diff>=MAXIMUM_TURNING_ANGLE-2){
+		return MINIMUM_TURNING_RADIUS;
+	}
+
+	//ROS_ERROR("RAD: %f", 180*MPS_SPEED/((M_PI*diff)+1));
+	return 180*MPS_SPEED/(M_PI*(diff+2));
+
+	no double turn
+
+
+	R = COLLISION_THRESHOLD*3.0;
+
+full
+
+

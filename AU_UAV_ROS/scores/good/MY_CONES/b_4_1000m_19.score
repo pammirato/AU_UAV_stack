@@ -1,0 +1,20 @@
+0 0 20619.671875 17311.402344 35
+
+Plane ID	Distance Traveled(m)	Minimum Travel(m)		Waypoints Achieved	Time of Death(s)
+--------	--------------------	-----------------		------------------	----------------
+0		4839.160800		4310.614874			10			43.392654
+1		4671.517968		3411.151809			10			41.892744
+2		6035.120668		5136.380983			10			54.092644
+3		5073.871926		4453.252879			10			45.492711
+--------	--------------------	-----------------		------------------	----------------
+Averages:	5154.917969		4327.850586			10.000000		46.217688
+
+Totals:
+Elapsed time:54.133192
+Waypoints reached: 40
+Number of conflicts: 0
+Number of collisions: 0
+Dead plane count: 4 of 4
+Distance actual/distance minimum: 1.191103
+Final Score: 200
+Number of avoidance manuevers: 35

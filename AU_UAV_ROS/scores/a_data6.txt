@@ -1,0 +1,10 @@
+Average Conflicts: 2.600000
+Average Collisions: 0.400000
+Average Distance Traveled: 10641.908643
+Average Minimum Distance needed: 8484.632422
+Average effiency: 0.797285
+Average Avoids: 69.500000
+
+
+
+//10 ,2, changed turing radius

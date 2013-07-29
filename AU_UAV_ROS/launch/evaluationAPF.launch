@@ -1,0 +1,7 @@
+<launch>
+	<node name="coordinator" pkg="AU_UAV_Team1" type="coordinator"/>
+	<node name="KMLCreator" pkg="AU_UAV_Team1" type="KMLCreator"  />
+	<node name="simulator" pkg="AU_UAV_Team1" type="simulator"/>
+	<node name="evaluator" pkg="AU_UAV_ROS" type="evaluator" output="screen" />
+	<node name="collisionAvoidance" pkg="AU_UAV_Team1" type="collisionAvoidance"/>
+</launch>

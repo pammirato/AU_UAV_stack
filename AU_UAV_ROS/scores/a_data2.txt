@@ -1,0 +1,13 @@
+Average Conflicts: 0.300000
+Average Collisions: 0.100000
+Average Distance Traveled: 12190.915527
+Average Minimum Distance needed: 9446.323242
+Average effiency: 0.774866
+Average Avoids: 77.000000
+
+
+#define CHECK_ZONE 10.0*MPS_SPEED //meters
+
+	R = COLLISION_THRESHOLD*2;
+
+

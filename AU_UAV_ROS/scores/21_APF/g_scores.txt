@@ -1,0 +1,10 @@
+g_16_500m_0.score
+g_16_500m_1.score
+g_16_500m_2.score
+g_16_500m_3.score
+g_16_500m_4.score
+g_16_500m_5.score
+g_16_500m_6.score
+g_16_500m_7.score
+g_16_500m_8.score
+g_16_500m_9.score

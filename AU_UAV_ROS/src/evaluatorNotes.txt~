@@ -1,0 +1,8 @@
+
+
+add WAYPOINT_THRESHOLD to standardDefs.h  value of 30
+
+replace <30 or < COLLISION_THRESHOLD  when seeing if you hit a waypoint.
+
+	in evaluator, collision avoidance, plane coordinator
+

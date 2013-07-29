@@ -1,0 +1,10 @@
+d_8_500m_0.score
+d_8_500m_1.score
+d_8_500m_2.score
+d_8_500m_3.score
+d_8_500m_4.score
+d_8_500m_5.score
+d_8_500m_6.score
+d_8_500m_7.score
+d_8_500m_8.score
+d_8_500m_9.score
